@@ -1,5 +1,3 @@
 package org.javiermf.db.statements
 
-class UnrecognizedStatementException : Exception() {
-
-}
+class UnrecognizedStatementException : Exception()

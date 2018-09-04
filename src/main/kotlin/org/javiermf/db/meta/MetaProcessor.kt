@@ -1,6 +1,7 @@
 package org.javiermf.db.meta
 
-import org.javiermf.db.meta.MetaResult.*
+import org.javiermf.db.meta.MetaResult.META_COMMAND_EXIT
+import org.javiermf.db.meta.MetaResult.META_COMMAND_UNRECOGNIZED_COMMAND
 
 
 const val COMMAND_EXIT = ".exit"
@@ -11,7 +12,7 @@ class MetaProcessor {
     fun doMetaCommand(line: String): MetaResult {
         return when (line) {
             COMMAND_EXIT -> META_COMMAND_EXIT
-            else -> MetaResult.META_COMMAND_UNRECOGNIZED_COMMAND
+            else -> META_COMMAND_UNRECOGNIZED_COMMAND
         }
     }
 

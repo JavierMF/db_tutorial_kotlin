@@ -1,18 +1,14 @@
 package org.javiermf.db.statements
 
 
-import org.javiermf.db.statements.StatementType.*
+import org.javiermf.db.statements.StatementType.STATEMENT_INSERT
+import org.javiermf.db.statements.StatementType.STATEMENT_SELECT
 
 class StatementProcessor{
 
     fun process(line: String) {
-        try {
             val statement = prepareStatement(line)
             executeStatement(statement)
-            println("Executed!")
-        } catch (e: UnrecognizedStatementException) {
-            println("Unrecognized keyword at start of '$line'")
-        }
     }
 
     private fun executeStatement(statement: Statement) {

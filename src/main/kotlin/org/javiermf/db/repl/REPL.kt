@@ -5,7 +5,6 @@ import org.javiermf.db.meta.MetaProcessor
 import org.javiermf.db.meta.MetaResult.META_COMMAND_EXIT
 import org.javiermf.db.meta.MetaResult.META_COMMAND_UNRECOGNIZED_COMMAND
 import org.javiermf.db.statements.StatementProcessor
-import org.javiermf.db.statements.UnrecognizedStatementException
 
 class REPL(private val metaProcessor: MetaProcessor,
            private val statementProcessor: StatementProcessor,
@@ -29,8 +28,8 @@ class REPL(private val metaProcessor: MetaProcessor,
                 try {
                     statementProcessor.process(line)
                     println("Executed!")
-                } catch (e: UnrecognizedStatementException) {
-                    println("Unrecognized keyword at start of '$line'")
+                } catch (e: Exception) {
+                    println(e.localizedMessage)
                 }
             }
         }

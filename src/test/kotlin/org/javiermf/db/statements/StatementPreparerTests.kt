@@ -45,4 +45,41 @@ class StatementPreparerTests {
 
     }
 
+    @Test
+    fun shouldThrowExceptionIfIdIsNotInt() {
+        assertThatExceptionOfType(PrepareSyntaxException::class.java)
+                .isThrownBy {
+                    statementPreparer.prepareStatement("insert wrongId javier my@email.com")
+                }
+
+    }
+
+    @Test
+    fun shouldThrowExceptionIfIdIsNegative() {
+        assertThatExceptionOfType(PrepareSyntaxException::class.java)
+                .isThrownBy {
+                    statementPreparer.prepareStatement("insert -3 javier my@email.com")
+                }
+
+    }
+
+
+    @Test
+    fun shouldThrowExceptionIfNameTooLong() {
+        assertThatExceptionOfType(PrepareSyntaxException::class.java)
+                .isThrownBy {
+                    statementPreparer.prepareStatement("insert 1 " + "a".padEnd(40, 'a') + " my@email.com")
+                }
+
+    }
+
+    @Test
+    fun shouldThrowExceptionIfEmailTooLong() {
+        assertThatExceptionOfType(PrepareSyntaxException::class.java)
+                .isThrownBy {
+                    statementPreparer.prepareStatement("insert 1 javierm " + "a".padEnd(260, 'a'))
+                }
+
+    }
+
 }
